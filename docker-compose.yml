@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  web:
+    build: .
+    ports:
+      - "5001:5001"
+    command: gunicorn -w 4 -b 0.0.0.0:5001 app:app
+    volumes:
+      - .:/app
+
+  tests:
+    build: .
+    command: python -m unittest discover -s tests
+    volumes:
+      - .:/app
