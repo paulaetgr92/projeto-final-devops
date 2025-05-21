@@ -2,13 +2,14 @@ from flask import Flask, jsonify, request
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required
 
 app = Flask(__name__)
-app.config["JWT_SECRET_KEY"] = "super-secret-key"  
+app.config["JWT_SECRET_KEY"] = "super-secret-key"
 
 jwt = JWTManager(app)
 
 @app.route('/')
 def home():
-    return jsonify({"message": "API is running"}), 200
+    return jsonify({"message": "API is running - versão teste automático!"}), 200
+
 
 @app.route('/login', methods=['POST'])
 def login():
@@ -19,5 +20,7 @@ def login():
 @jwt_required()
 def protected():
     return jsonify({"message": "Você acessou um recurso protegido"}), 200
+
+# Para rodar localmente
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5001, debug=True)
