@@ -1,4 +1,4 @@
-name: Build and Test Flask App
+name: Build, Test and Deploy Flask App
 
 on:
   push:
@@ -19,3 +19,7 @@ jobs:
 
       - name: Rodar testes
         run: docker run --rm flask-jwt-test python3 -m unittest test_app.py
+
+      - name: Deploy na Vercel
+        run: |
+          curl -X POST https://vercel.com/api/webhooks/deploy/YOUR_DEPLOY_HOOK_URL
