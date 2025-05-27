@@ -6,25 +6,30 @@ on:
       - main
 
 jobs:
-  build:
+  setup:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout do código
         uses: actions/checkout@v3
 
-      - name: Instalar dependências (exemplo com Node.js, altere conforme sua stack)
+      - name: Instalar dependências
+        run: |
+          echo "Simulando instalação de dependências"
+          # Exemplo: npm install, pip install -r requirements.txt, etc.
+
+  build:
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build da aplicação
         run: |
           echo "Simulando etapa de build"
-          # Exemplo: npm install, pip install -r requirements.txt, etc.
           echo "Build concluído"
 
   test:
-    runs-on: ubuntu-latest
     needs: build
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout do código
-        uses: actions/checkout@v3
-
       - name: Rodar testes
         run: |
           echo "Chamando rota protegida com token JWT"
@@ -32,12 +37,9 @@ jobs:
             -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0Nzg3MDQ5OCwianRpIjoiNGQ4ZWE4MTEtZjM0NC00M2MzLWFkYWUtMDNkZGRlZjk0Mzc3IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InVzdWFyaW9fZXhlbXBsbyIsIm5iZiI6MTc0Nzg3MDQ5OCwiY3NyZiI6ImQxODcyODcyLWVhYzEtNDYzYi04Y2Q2LTI2M2ZkOWUwNjI1MiIsImV4cCI6MTc0Nzg3MTM5OH0.f2n8jlnaGhDiBSUca3cfr8Qoezag3TJwPzKeoOcy8JI"
 
   deploy:
-    runs-on: ubuntu-latest
     needs: test
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout do código
-        uses: actions/checkout@v3
-
       - name: Instalar Vercel CLI
         run: npm install -g vercel
 
