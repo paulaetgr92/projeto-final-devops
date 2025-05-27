@@ -43,5 +43,8 @@ jobs:
       - name: Instalar Vercel CLI
         run: npm install -g vercel
 
+      - name: Desativar telemetria da Vercel
+        run: vercel telemetry disable
+
       - name: Fazer deploy no Vercel
         run: vercel --prod --token EKDKGIeJ0zQCB37oRJDLzas9 --yes
