@@ -3,7 +3,6 @@ from app import app
 import werkzeug
 from flask_jwt_extended import create_access_token
 
-# Patch temporário para adicionar o atributo '__version__' em werkzeug
 if not hasattr(werkzeug, '__version__'):
     werkzeug.__version__ = "mock-version"
 

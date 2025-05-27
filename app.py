@@ -21,6 +21,6 @@ def login():
 def protected():
     return jsonify({"message": "Você acessou um recurso protegido"}), 200
 
-# Para rodar localmente
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5001, debug=True)
