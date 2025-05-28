@@ -47,4 +47,4 @@ jobs:
         run: vercel telemetry disable
 
       - name: Fazer deploy no Vercel
-        run: vercel --prod --token ${{ secrets.VERCEL_TOKEN }} 
+        run: vercel --prod --token ${{ secrets.VERCEL_TOKEN }} --yes --scope paulaentringer --name teste-final-theta
