@@ -34,7 +34,7 @@ jobs:
         run: |
           echo "Chamando rota protegida com token JWT"
           curl -X GET https://teste-final-theta.vercel.app/protected \
-            -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0Nzg3MDQ5OCwianRpIjoiNGQ4ZWE4MTEtZjM0NC00M2MzLWFkYWUtMDNkZGRlZjk0Mzc3IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InVzdWFyaW9fZXhlbXBsbyIsIm5iZiI6MTc0Nzg3MDQ5OCwiY3NyZiI6ImQxODcyODcyLWVhYzEtNDYzYi04Y2Q2LTI2M2ZkOWUwNjI1MiIsImV4cCI6MTc0Nzg3MTM5OH0.f2n8jlnaGhDiBSUca3cfr8Qoezag3TJwPzKeoOcy8JI"
+            -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
 
   deploy:
     needs: test
@@ -47,4 +47,4 @@ jobs:
         run: vercel telemetry disable
 
       - name: Fazer deploy no Vercel
-        run: vercel --prod --token EKDKGIeJ0zQCB37oRJDLzas9 --yes
+        run: vercel --prod --token ${{ secrets.VERCEL_TOKEN }} 
